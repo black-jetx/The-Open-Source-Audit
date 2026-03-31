@@ -1,8 +1,8 @@
 #!/bin/bash
 # Script 1: System Identity Report
-# Author: Rajkumar S | Course: Open Source Software
+# Author: SRIDHAR  | Course: Open Source Software
 # --- Variables ---
-STUDENT_NAME="Rajkumar S"
+STUDENT_NAME="SRIDHAR"
 SOFTWARE_CHOICE="VLC Media Player"
 # --- System info ---
 KERNEL=$(uname -r)
