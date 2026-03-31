@@ -1,7 +1,7 @@
 # 🎬 Open Source Audit — VLC Media Player
 
 **Student Name:** Sridhar  
-**Registration Number:** _(Add your reg. number here)_  
+**Registration Number:** _24MEI10077_  
 **Subject:** Open Source Software & Linux Scripting  
 
 ---
@@ -132,7 +132,6 @@ It also made me appreciate why open-source matters — not just as a technical c
 ## 👤 Author
 
 **Sridhar**  
-_(Add your college name, department, and year if you'd like)_
 
 ---
 
