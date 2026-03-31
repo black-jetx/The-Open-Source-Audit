@@ -1,30 +1,42 @@
 #!/bin/bash
 # Script 3: Disk and Permission Auditor
-
-DIRS=("/etc" "/var/log" "/home" "/usr/bin" "/tmp")
-
-echo "Directory Audit Report"
-echo "----------------------"
-
-for DIR in "${DIRS[@]}"
-do
-    if [ -d "$DIR" ]
-    then
-        PERMS=$(ls -ld $DIR | awk '{print $1, $3, $4}')
-        SIZE=$(du -sh $DIR 2>/dev/null | cut -f1)
-
-        echo "$DIR => Permissions: $PERMS | Size: $SIZE"
-    else
-        echo "$DIR does not exist"
-    fi
-done
-
-echo ""
-echo "Checking Python directory..."
-
-if [ -d "/usr/bin/python3" ]
-then
-    ls -l /usr/bin/python3
+# Author: SRIDHAR (24MEI10077)
+# --- Directories to audit ---
+DIRS=("/etc" "/var/log" "/home" "/usr/bin" "/tmp"
+"$HOME/.config/vlc")
+echo "================================================="
+echo " Disk and Permission Audit Report"
+echo "================================================="
+echo "This report shows directory permissions, ownership, and
+disk usage."
+echo "-------------------------------------------------"
+# --- Loop through directories ---
+for DIR in "${DIRS[@]}"; do
+if [ -d "$DIR" ]; then
+# Get permissions, owner, and group
+PERMS=$(ls -ld "$DIR" | awk '{print $1}')
+OWNER=$(ls -ld "$DIR" | awk '{print $3}')
+GROUP=$(ls -ld "$DIR" | awk '{print $4}')
+# Get size (ignore permission errors)
+SIZE=$(du -sh "$DIR" 2>/dev/null | cut -f1)
+18
+# Display nicely formatted output
+printf "%-25s | %s | Owner: %s:%s | Size: %s\n" \
+"$DIR" "$PERMS" "$OWNER" "$GROUP" "${SIZE:-N/A}"
 else
-    echo "Python directory not found"
+printf "%-25s | Not Found \n" "$DIR"
 fi
+done
+echo "-------------------------------------------------"
+echo "VLC Configuration Check:"
+# --- VLC specific check ---
+if [ -d "$HOME/.config/vlc" ]; then
+echo "VLC configuration folder is present."
+echo "This folder stores user preferences and settings in
+open, editable format."
+else
+echo "VLC configuration folder not found."
+echo "Try running VLC once to generate user configuration
+files."
+fi
+echo "================================================="
